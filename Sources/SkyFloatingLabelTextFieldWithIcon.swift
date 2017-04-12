@@ -104,11 +104,10 @@ open class SkyFloatingLabelTextFieldWithIcon: SkyFloatingLabelTextField {
     
     /// Creates the icon label
     fileprivate func createIconLabel() {
-        let iconLabel = UILabel()
+        iconLabel = UILabel()
         iconLabel.backgroundColor = UIColor.clear
         iconLabel.textAlignment = .center
         iconLabel.autoresizingMask = [.flexibleTopMargin, .flexibleRightMargin]
-        self.iconLabel = iconLabel
         addSubview(iconLabel)
         
         updateIconLabelColor()
@@ -156,9 +155,8 @@ open class SkyFloatingLabelTextFieldWithIcon: SkyFloatingLabelTextField {
     override open func editingRect(forBounds bounds: CGRect) -> CGRect {
         var rect = super.editingRect(forBounds: bounds)
         if isLTRLanguage {
+            // only change the editing field X position for LTR languages
             rect.origin.x += CGFloat(iconWidth + iconMarginLeft)
-        } else {
-            // don't change the editing field X position for RTL languages
         }
         rect.size.width -= CGFloat(iconWidth + iconMarginLeft)
         return rect
@@ -172,9 +170,8 @@ open class SkyFloatingLabelTextFieldWithIcon: SkyFloatingLabelTextField {
     override open func placeholderRect(forBounds bounds: CGRect) -> CGRect {
         var rect = super.placeholderRect(forBounds: bounds)
         if isLTRLanguage {
+            // only change the editing field X position for LTR languages
             rect.origin.x += CGFloat(iconWidth + iconMarginLeft)
-        } else {
-            // don't change the editing field X position for RTL languages
         }
         rect.size.width -= CGFloat(iconWidth + iconMarginLeft)
         return rect

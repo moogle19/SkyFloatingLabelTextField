@@ -284,7 +284,6 @@ open class SkyFloatingLabelTextField: UITextField { // swiftlint:disable:this ty
      */
     open func editingChanged() {
         updateControl(true)
-        updateTitleLabel(true)
     }
 
     // MARK: create components
@@ -454,9 +453,7 @@ open class SkyFloatingLabelTextField: UITextField { // swiftlint:disable:this ty
             let animationOptions: UIViewAnimationOptions = .curveEaseOut
             let duration = isTitleVisible() ? titleFadeInDuration : titleFadeOutDuration
             layoutIfNeeded()
-            UIView.animate(withDuration: duration, delay: 0, options: animationOptions, animations: { () -> Void in
-                updateBlock()
-                }, completion: completion)
+            UIView.animate(withDuration: duration, delay: 0, options: animationOptions, animations: updateBlock, completion: completion)
         } else {
             updateBlock()
             completion?(true)
